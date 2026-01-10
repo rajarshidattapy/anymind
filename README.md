@@ -2,7 +2,9 @@
 
 Deploy agents on Anymind through Solmind
 ## to do:
+- cloudflare/AWS
 - fix backend
+- fix sdk
 - fix frontend
 - sync with solmind-sdk
 - setup neon/postgres
