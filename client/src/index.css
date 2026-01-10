@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Anymind Design System - Premium Developer Infrastructure Aesthetic
+   All colors in HSL format */
+
+@layer base {
+  :root {
+    /* Deep cobalt / midnight blue base */
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
+
+    /* Cards with subtle elevation */
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 47% 13%;
+    --popover-foreground: 210 40% 96%;
+
+    /* Electric blue primary */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 8%;
+
+    /* Slate secondary */
+    --secondary: 222 30% 18%;
+    --secondary-foreground: 210 40% 90%;
+
+    /* Muted silver-gray */
+    --muted: 222 20% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Soft cyan accent */
+    --accent: 187 85% 53%;
+    --accent-foreground: 222 47% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 20%;
+    --input: 222 30% 15%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    /* Status colors */
+    --status-running: 142 76% 46%;
+    --status-building: 45 93% 47%;
+    --status-failed: 0 72% 51%;
+
+    /* Custom glow effects */
+    --glow-primary: 217 91% 60%;
+    --glow-cyan: 187 85% 53%;
+
+    /* Sidebar inherits main theme */
+    --sidebar-background: 222 47% 6%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 8%;
+    --sidebar-accent: 222 30% 15%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Monospace for code elements */
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  }
+}
+
+@layer utilities {
+  /* Glow effects for active states */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3),
+                0 0 40px hsl(var(--glow-primary) / 0.15);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px hsl(var(--glow-cyan) / 0.3),
+                0 0 40px hsl(var(--glow-cyan) / 0.15);
+  }
+
+  /* Subtle card elevation */
+  .card-elevated {
+    box-shadow: 0 4px 20px hsl(222 47% 4% / 0.5),
+                0 0 1px hsl(var(--border));
+  }
+
+  /* Status indicator dots */
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-running {
+    background-color: hsl(var(--status-running));
+    box-shadow: 0 0 8px hsl(var(--status-running) / 0.5);
+  }
+
+  .status-building {
+    background-color: hsl(var(--status-building));
+    box-shadow: 0 0 8px hsl(var(--status-building) / 0.5);
+  }
+
+  .status-failed {
+    background-color: hsl(var(--status-failed));
+    box-shadow: 0 0 8px hsl(var(--status-failed) / 0.5);
+  }
+
+  /* Terminal-style panel */
+  .terminal-panel {
+    @apply bg-background/80 border border-border rounded-lg p-4 font-mono text-sm;
+    background: linear-gradient(180deg, hsl(222 47% 10%) 0%, hsl(222 47% 8%) 100%);
+  }
+
+  /* Gradient backgrounds */
+  .gradient-dark {
+    background: linear-gradient(135deg, hsl(222 47% 8%) 0%, hsl(222 47% 12%) 50%, hsl(222 47% 6%) 100%);
+  }
+
+  .gradient-card {
+    background: linear-gradient(180deg, hsl(222 47% 13%) 0%, hsl(222 47% 10%) 100%);
+  }
+}

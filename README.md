@@ -5,4 +5,6 @@ Deploy agents on Anymind through Solmind
 - fix backend
 - fix frontend
 - sync with solmind-sdk
-- 
+- setup neon/postgres
+- UI connect with frontend
+- single page SPA
