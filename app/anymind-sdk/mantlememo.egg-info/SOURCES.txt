@@ -1,0 +1,12 @@
+README.md
+setup.py
+mantlememo/__init__.py
+mantlememo/agent.py
+mantlememo/client.py
+mantlememo/errors.py
+mantlememo/types.py
+mantlememo.egg-info/PKG-INFO
+mantlememo.egg-info/SOURCES.txt
+mantlememo.egg-info/dependency_links.txt
+mantlememo.egg-info/requires.txt
+mantlememo.egg-info/top_level.txt
