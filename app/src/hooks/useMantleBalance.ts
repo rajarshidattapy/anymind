@@ -1,39 +1,43 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useWallet } from '../contexts/WalletContextProvider';
 
-export const useMantleBalance = () => {
-  const { provider, address, connected } = useWallet();
-  const [balance, setBalance] = useState<number | null>(null);
-  const [loading, setLoading] = useState(false);
+interface MantleBalanceData {
+  balance: string;
+  loading: boolean;
+  error: string | null;
+}
 
-  const fetchBalance = useCallback(async () => {
-    if (!address || !connected || !provider) {
-      setBalance(null);
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const balanceWei = await provider.getBalance(address);
-      const balanceEther = parseFloat(balanceWei.toString()) / 1e18;
-      setBalance(balanceEther);
-    } catch (error) {
-      console.error('Error fetching balance:', error);
-      setBalance(null);
-    } finally {
-      setLoading(false);
-    }
-  }, [provider, address, connected]);
+export const useMantleBalance = (): MantleBalanceData => {
+  const [balance, setBalance] = useState<string>('0');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const { connected, address, provider } = useWallet();
 
   useEffect(() => {
+    const fetchBalance = async () => {
+      if (!connected || !address || !provider) {
+        setBalance('0');
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        const balanceWei = await provider.getBalance(address);
+        const balanceEth = (Number(balanceWei) / 1e18).toFixed(4);
+        setBalance(balanceEth);
+      } catch (err) {
+        console.error('Error fetching Mantle balance:', err);
+        setError('Failed to fetch balance');
+        setBalance('0');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchBalance();
+  }, [connected, address, provider]);
 
-    // Set up polling for balance changes (every 10 seconds)
-    if (address && connected && provider) {
-      const interval = setInterval(fetchBalance, 10000);
-      return () => clearInterval(interval);
-    }
-  }, [fetchBalance, address, connected, provider]);
-
-  return { balance, loading, refetch: fetchBalance };
+  return { balance, loading, error };
 };

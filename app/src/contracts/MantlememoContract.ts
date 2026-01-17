@@ -39,7 +39,7 @@ export const MANTLEMEMO_ABI = [
   "function LOCK_PERIOD_SECONDS() view returns (uint256)"
 ];
 
-// Contract address on Mantle Sepolia
+// Contract address on Ethereum Sepolia
 export const MANTLEMEMO_CONTRACT_ADDRESS = import.meta.env.VITE_MANTLEMEMO_CONTRACT_ADDRESS || "0x4287F8a28AC24FF1b0723D26747CBE7F39C9C167";
 
 // Type definitions matching the contract structs

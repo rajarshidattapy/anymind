@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Brain, Store, Wallet, Settings, MessageSquare, Coins, TrendingUp, ArrowLeft, Plus, X } from 'lucide-react';
-import { useMantleBalance } from '../hooks/useMantleBalance';
+import { useEthBalance } from '../hooks/useEthBalance';
 import { useWallet } from '../contexts/WalletContextProvider';
 import { useApiClient } from '../lib/api';
 import appLogo from '../assets/logo.png';
@@ -25,7 +25,7 @@ interface NavbarProps {
 }
 
 const BalanceDisplay = () => {
-  const { balance, loading } = useMantleBalance();
+  const { balance, loading } = useEthBalance();
   const { connected } = useWallet();
 
   // Log balance changes for debugging

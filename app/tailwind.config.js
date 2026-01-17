@@ -17,18 +17,31 @@ export default {
         'normal': '-0.02em',
       },
       colors: {
-        // Mantle-inspired color palette
+        // Ethereum-themed colors (primary theme)
+        ethereum: {
+          50: '#f0f4ff',   // Very light blue
+          100: '#e0e9ff',  // Light blue
+          200: '#c7d8ff',  // Soft blue
+          300: '#a4bfff',  // Medium blue
+          400: '#7a9fff',  // Blue accent
+          500: '#627eea',  // Primary Ethereum blue
+          600: '#4a5cd4',  // Darker blue
+          700: '#3b4bb3',  // Deep blue
+          800: '#2e3a8a',  // Very deep blue
+          900: '#1e2654',  // Darkest blue
+        },
+        // Keep mantle colors as alias to ethereum for backward compatibility
         mantle: {
-          50: '#f0fdfa',   // Very light teal
-          100: '#ccfbf1',  // Light teal
-          200: '#99f6e4',  // Soft teal
-          300: '#5eead4',  // Medium teal
-          400: '#2dd4bf',  // Teal accent
-          500: '#14b8a6',  // Primary teal
-          600: '#0d9488',  // Darker teal
-          700: '#0f766e',  // Deep teal
-          800: '#115e59',  // Very deep teal
-          900: '#134e4a',  // Darkest teal
+          50: '#f0f4ff',
+          100: '#e0e9ff',
+          200: '#c7d8ff',
+          300: '#a4bfff',
+          400: '#7a9fff',
+          500: '#627eea',
+          600: '#4a5cd4',
+          700: '#3b4bb3',
+          800: '#2e3a8a',
+          900: '#1e2654',
         },
         neutral: {
           50: '#fafafa',

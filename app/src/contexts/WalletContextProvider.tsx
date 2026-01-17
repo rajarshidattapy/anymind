@@ -10,7 +10,7 @@ interface WalletContextType {
   signer: ethers.JsonRpcSigner | null;
   connect: () => Promise<void>;
   disconnect: () => void;
-  switchToMantle: () => Promise<void>;
+  switchToEthereum: () => Promise<void>;
 }
 
 const WalletContext = createContext<WalletContextType | null>(null);
@@ -19,16 +19,16 @@ interface WalletContextProviderProps {
   children: ReactNode;
 }
 
-const MANTLE_TESTNET = {
-  chainId: '0x138B', // 5003 in hex
-  chainName: 'Mantle Sepolia Testnet',
+const ETHEREUM_SEPOLIA = {
+  chainId: '0xaa36a7', // 11155111 in hex
+  chainName: 'Ethereum Sepolia Testnet',
   nativeCurrency: {
-    name: 'MNT',
-    symbol: 'MNT',
+    name: 'ETH',
+    symbol: 'ETH',
     decimals: 18,
   },
-  rpcUrls: ['https://rpc.sepolia.mantle.xyz'],
-  blockExplorerUrls: ['https://explorer.sepolia.mantle.xyz'],
+  rpcUrls: ['https://rpc.sepolia.org'],
+  blockExplorerUrls: ['https://sepolia.etherscan.io'],
 };
 
 export const WalletContextProvider: FC<WalletContextProviderProps> = ({ children }) => {
@@ -74,9 +74,9 @@ export const WalletContextProvider: FC<WalletContextProviderProps> = ({ children
 
       await updateBalance(address, provider);
 
-      // Switch to Mantle Sepolia if not already on it
-      if (Number(network.chainId) !== 5003) {
-        await switchToMantle();
+      // Switch to Ethereum Sepolia if not already on it
+      if (Number(network.chainId) !== 11155111) {
+        await switchToEthereum();
       }
     } catch (error) {
       console.error('Error connecting wallet:', error);
@@ -84,7 +84,7 @@ export const WalletContextProvider: FC<WalletContextProviderProps> = ({ children
     }
   }, [updateBalance]);
 
-  const switchToMantle = useCallback(async () => {
+  const switchToEthereum = useCallback(async () => {
     if (!window.ethereum) {
       throw new Error('MetaMask is not installed');
     }
@@ -92,7 +92,7 @@ export const WalletContextProvider: FC<WalletContextProviderProps> = ({ children
     try {
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: MANTLE_TESTNET.chainId }],
+        params: [{ chainId: ETHEREUM_SEPOLIA.chainId }],
       });
     } catch (switchError: any) {
       // This error code indicates that the chain has not been added to MetaMask
@@ -100,14 +100,14 @@ export const WalletContextProvider: FC<WalletContextProviderProps> = ({ children
         try {
           await window.ethereum.request({
             method: 'wallet_addEthereumChain',
-            params: [MANTLE_TESTNET],
+            params: [ETHEREUM_SEPOLIA],
           });
         } catch (addError) {
-          console.error('Error adding Mantle network:', addError);
+          console.error('Error adding Ethereum network:', addError);
           throw addError;
         }
       } else {
-        console.error('Error switching to Mantle:', switchError);
+        console.error('Error switching to Ethereum:', switchError);
         throw switchError;
       }
     }
@@ -179,7 +179,7 @@ export const WalletContextProvider: FC<WalletContextProviderProps> = ({ children
     signer,
     connect,
     disconnect,
-    switchToMantle,
+    switchToEthereum,
   };
 
   return (

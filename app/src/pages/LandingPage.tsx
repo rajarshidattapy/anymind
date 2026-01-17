@@ -16,6 +16,7 @@ import mantleLogo from "../assets/logo.png";
 import appLogo from "../assets/logo.png";
 import cometBg from "../assets/comet.gif";
 import mantleIcon from "../assets/mantle.png";
+import { useEthBalance } from "../hooks/useEthBalance";
 import { useMantleBalance } from "../hooks/useMantleBalance";
 
 export default function LandingPage() {
@@ -74,7 +75,7 @@ export default function LandingPage() {
               {connected && address ? (
                 <div className="flex items-center gap-3" ref={disconnectRef}>
                   <div className="glass px-4 py-2 text-sm font-medium text-mantle-300">
-                    {loading ? '...' : `${balance?.toFixed(4) ?? '0'} ETH`}
+                    {loading ? '...' : `${balance ?? '0'} ETH`}
                   </div>
                   <div className="relative">
                     <button
@@ -119,8 +120,8 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
           <div className="text-center mb-8">
             <span className="badge-mantle mb-6">
-              <img src={mantleIcon} alt="Mantle" className="w-4 h-4" />
-               ‎ v1 live on Mantle Sepolia testnet
+              <img src={mantleIcon} alt="Ethereum" className="w-4 h-4" />
+               ‎ v1 live on Ethereum Sepolia testnet
             </span>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Turn AI conversations into{' '}
@@ -131,7 +132,7 @@ export default function LandingPage() {
             </h1>
             <p className="text-xl font-light text-white-200 max-w-3xl mx-auto mb-10">
 
-              Anymind is a Mantle-native AI intelligence marketplace. Chat with agents, package
+              Anymind is an Ethereum-native AI intelligence marketplace. Chat with agents, package
               long-term intelligence into capsules, and monetize them as revenue-generating assets.
             </p>
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { TrendingUp, Users, Calendar, ExternalLink, Loader2, Download } from 'lucide-react';
-import { useMantleBalance } from '../hooks/useMantleBalance';
+import { useEthBalance } from '../hooks/useEthBalance';
 import { useWallet } from '../contexts/WalletContextProvider';
 import { useOnChainData } from '../hooks/useOnChainData';
 import { useContract } from '../hooks/useContract';
@@ -8,7 +8,7 @@ import mantleLogo from '../assets/logo.png';
 
 const EarningsDashboard = () => {
   const [timeRange, setTimeRange] = useState<'7d' | '30d' | '90d' | '1y'>('30d');
-  const { balance, loading } = useMantleBalance();
+  const { balance, loading } = useEthBalance();
   const { connected, address } = useWallet();
   const { userCapsules, loading: capsulesLoading } = useOnChainData();
   const { contract, executeTransaction, loading: contractLoading } = useContract();
@@ -145,7 +145,7 @@ const EarningsDashboard = () => {
         {connected && address && (
           <div className="mb-8">
             <a 
-              href={`https://explorer.sepolia.mantle.xyz/address/${address}`}
+              href={`https://sepolia.etherscan.io/address/${address}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"

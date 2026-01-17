@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="mantlememo",
+    name="anymind",
     version="1.0.0",
-    description="Python SDK for Mantlememo API",
-    author="Mantlememo",
+    description="Python SDK for Anymind API",
+    author="Anymind",
     packages=find_packages(),
     install_requires=[
         "requests>=2.31.0",
