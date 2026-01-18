@@ -145,7 +145,7 @@ const EarningsDashboard = () => {
         {connected && address && (
           <div className="mb-8">
             <a 
-              href={`https://sepolia.etherscan.io/address/${address}`}
+              href={`https://explorer.sepolia.mantle.xyz/address/${address}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"

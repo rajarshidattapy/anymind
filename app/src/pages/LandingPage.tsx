@@ -16,7 +16,6 @@ import mantleLogo from "../assets/logo.png";
 import appLogo from "../assets/logo.png";
 import cometBg from "../assets/comet.gif";
 import mantleIcon from "../assets/mantle.png";
-import { useEthBalance } from "../hooks/useEthBalance";
 import { useMantleBalance } from "../hooks/useMantleBalance";
 
 export default function LandingPage() {

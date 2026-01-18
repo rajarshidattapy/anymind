@@ -123,7 +123,7 @@ const WalletBalance = () => {
               
               {connected && address && (
                 <a 
-                  href={`https://sepolia.etherscan.io/address/${address}`}
+                  href={`https://explorer.sepolia.mantle.xyz/address/${address}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-gray-700 hover:bg-gray-600 text-white p-4 rounded-lg transition-colors flex items-center justify-center font-semibold"
@@ -148,7 +148,7 @@ const WalletBalance = () => {
                 rel="noopener noreferrer"
                 className="text-blue-400 hover:text-blue-300 transition-colors text-sm"
               >
-                View on Etherscan →
+                View on Mantle Explorer →
               </a>
             )}
           </div>
