@@ -1,8 +1,8 @@
 Metadata-Version: 2.4
-Name: mantlememo
+Name: anymind
 Version: 1.0.0
-Summary: Python SDK for Mantlememo API
-Author: Mantlememo
+Summary: Python SDK for Anymind API
+Author: Anymind
 Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: Developers
 Classifier: Programming Language :: Python :: 3

@@ -1,7 +1,7 @@
-# Ethmemo: Ethereum-Powered AI Memory
+# Anymind: Ethereum-Powered AI Memory
 
-EthMemo turns AI conversations into reusable intelligence coordinated on Ethereum.  
-Instead of fine-tuning models or rebuilding prompts, EthMemo captures long-term agent memory and exposes it as permissioned, composable intelligence.
+Anymind turns AI conversations into reusable intelligence coordinated on Ethereum.  
+Instead of fine-tuning models or rebuilding prompts, Anymind captures long-term agent memory and exposes it as permissioned, composable intelligence.
 
 ## What it does
 - Wraps any stateless LLM with persistent memory

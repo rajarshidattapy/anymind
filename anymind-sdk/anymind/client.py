@@ -1,8 +1,8 @@
 import requests
-from .errors import AuthenticationError, MantlememoRuntimeError
+from .errors import AuthenticationError, AnymindRuntimeError
 
 
-class MantlememoClient:
+class AnymindClient:
     def __init__(self, wallet_address: str, base_url: str):
         self.wallet_address = wallet_address
         self.base_url = base_url.rstrip("/")
@@ -22,10 +22,10 @@ class MantlememoClient:
             raise AuthenticationError("Wallet address required or invalid")
 
         if resp.status_code == 404:
-            raise MantlememoRuntimeError(f"Resource not found: {resp.text}")
+            raise AnymindRuntimeError(f"Resource not found: {resp.text}")
 
         if resp.status_code != 200:
-            raise MantlememoRuntimeError(f"API error ({resp.status_code}): {resp.text}")
+            raise AnymindRuntimeError(f"API error ({resp.status_code}): {resp.text}")
 
         return resp.json()
 

@@ -1,4 +1,4 @@
-from .client import MantlememoClient
+from .client import AnymindClient
 from .types import ChatResponse
 
 
@@ -8,7 +8,7 @@ class Agent:
 
     - agent_id: persistent agent identity
     - chat_id: strict capsule scope
-    - wallet_address: Solana wallet address for authentication
+    - wallet_address: Wallet address for authentication (e.g., Ethereum/EVM address)
     """
 
     def __init__(
@@ -20,7 +20,7 @@ class Agent:
     ):
         self.agent_id = agent_id
         self.chat_id = chat_id
-        self.client = MantlememoClient(wallet_address, base_url)
+        self.client = AnymindClient(wallet_address, base_url)
 
     def chat(self, message: str) -> str:
         """
