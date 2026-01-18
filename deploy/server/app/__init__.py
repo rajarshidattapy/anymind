@@ -1,2 +1,0 @@
-"""Agent Management API application."""
-
