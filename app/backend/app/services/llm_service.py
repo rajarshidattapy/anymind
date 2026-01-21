@@ -21,6 +21,7 @@ def truncate_to_words(text: str, max_words: int = 100) -> str:
 class LLMService:
     def __init__(self):
         self.openrouter_base = "https://openrouter.ai/api/v1"
+        self.cerebras_base = "https://api.cerebras.ai/v1"
         self.memory_service = MemoryService()
 
     # ---------------------------------------------------------------------
@@ -195,6 +196,11 @@ class LLMService:
             or agent_id in {"gpt", "mistral"}
         ):
             provider = "openrouter"
+        elif (
+            platform == "cerebras"
+            or "cerebras" in platform
+        ):
+            provider = "cerebras"
         else:
             provider = "openrouter"  # default fallback to openrouter
 
@@ -220,6 +226,9 @@ class LLMService:
 
         if provider == "openrouter":
             async for c in self._openrouter_stream(messages, model, api_key):
+                yield c
+        elif provider == "cerebras":
+            async for c in self._cerebras_stream(messages, model, api_key):
                 yield c
         else:
             # Default to openrouter for all providers
@@ -261,6 +270,41 @@ class LLMService:
                         delta = payload["choices"][0].get("delta", {})
                         if content := delta.get("content"):
                             yield content
+
+    async def _cerebras_stream(self, messages, model, api_key):
+        model = model or "llama3.1-8b"
+        api_key = api_key or settings.CEREBRAS_API_KEY
+
+        async with httpx.AsyncClient() as client:
+            async with client.stream(
+                "POST",
+                f"{self.cerebras_base}/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": model,
+                    "messages": messages,
+                    "stream": True
+                },
+                timeout=60
+            ) as response:
+                response.raise_for_status()
+
+                async for line in response.aiter_lines():
+                    if line.startswith("data: "):
+                        data = line[6:]
+                        if data.strip() == "[DONE]":
+                            break
+                        try:
+                            payload = json.loads(data)
+                            delta = payload.get("choices", [{}])[0].get("delta", {})
+                            if content := delta.get("content"):
+                                yield content
+                        except (json.JSONDecodeError, KeyError, IndexError) as e:
+                            logger.warning(f"Error parsing Cerebras stream chunk: {e}")
+                            continue
 
     # ---------------------------------------------------------------------
 

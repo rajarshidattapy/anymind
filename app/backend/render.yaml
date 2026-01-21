@@ -27,6 +27,8 @@ services:
       # LLM API Keys
       - key: OPENROUTER_API_KEY
         sync: false  # Set this manually in Render dashboard
+      - key: CEREBRAS_API_KEY
+        sync: false  # Set this manually in Render dashboard (optional)
       - key: OPENAI_API_KEY
         sync: false  # Set this manually in Render dashboard (optional)
       - key: ANTHROPIC_API_KEY

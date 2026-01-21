@@ -98,6 +98,7 @@ class Settings(BaseSettings):
     
     # LLM API Keys
     OPENROUTER_API_KEY: str = os.getenv("OPENROUTER_API_KEY", "")
+    CEREBRAS_API_KEY: str = os.getenv("CEREBRAS_API_KEY", "")
     
     # Mem0 Platform API Key (for hosted memory service)
     MEM0_API_KEY: str = os.getenv("MEM0_API_KEY", "")
